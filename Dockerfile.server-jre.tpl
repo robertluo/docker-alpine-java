@@ -1,5 +1,5 @@
 # AlpineLinux with a glibc-2.23 and Oracle Java %JVM_MAJOR%
-FROM docker:1.12 
+FROM docker:1.13 
 
 MAINTAINER Anastas Dancha <anapsix@random.io>
 # thanks to Vladimir Krivosheev <develar@gmail.com> aka @develar for smaller image
@@ -71,6 +71,7 @@ RUN apk upgrade --update && \
            /opt/jdk/jre/lib/oblique-fonts \
            /opt/jdk/jre/lib/plugin.jar \
            /tmp/* /var/cache/apk/* && \
-    echo 'hosts: files mdns4_minimal [NOTFOUND=return] dns mdns4' >> /etc/nsswitch.conf
-
+    echo 'hosts: files mdns4_minimal [NOTFOUND=return] dns mdns4' >> /etc/nsswitch.conf && \
+    curl -L "https://github.com/docker/compose/releases/download/1.10.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/bin/docker-compose && \
+    chmod +x /usr/bin/docker-compose
 # EOF

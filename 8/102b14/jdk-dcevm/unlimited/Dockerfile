@@ -79,8 +79,9 @@ RUN apk upgrade --update && \
            /opt/jdk/jre/lib/oblique-fonts \
            /opt/jdk/jre/lib/plugin.jar \
            /tmp/* /var/cache/apk/* && \
-    echo 'hosts: files mdns4_minimal [NOTFOUND=return] dns mdns4' >> /etc/nsswitch.conf && \
-    curl -L "https://github.com/docker/compose/releases/download/1.10.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/bin/docker-compose && \
+    echo 'hosts: files mdns4_minimal [NOTFOUND=return] dns mdns4' >> /etc/nsswitch.conf 
+# install compose
+RUN curl -L "https://github.com/docker/compose/releases/download/1.10.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/bin/docker-compose && \
     chmod +x /usr/bin/docker-compose
 
 # EOF
